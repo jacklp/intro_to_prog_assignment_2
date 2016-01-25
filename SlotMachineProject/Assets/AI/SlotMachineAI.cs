@@ -22,6 +22,8 @@ public class SlotMachineAI : MonoBehaviour {
 
 	Wheel[] wheelsArray = new Wheel[3];
 
+	Lever lever;
+
 	//---------------------------------------------------
 
 	StateMachine<SlotMachineAI> _fsm;
@@ -47,6 +49,8 @@ public class SlotMachineAI : MonoBehaviour {
 		buttonsArray[0] = GameObject.Find("Button0").GetComponent<Button>();
 		buttonsArray[1] = GameObject.Find("Button1").GetComponent<Button>();
 		buttonsArray[2] = GameObject.Find("Button2").GetComponent<Button>();
+
+		lever = GameObject.Find("Lever").GetComponent<Lever>();
 
 	}
 	
@@ -76,12 +80,28 @@ public class SlotMachineAI : MonoBehaviour {
 	// Actions to be used by the states ------------------------------
 	public void enableButtons()
 	{
-
+		for(int i = 0; i < 3; i++)
+		{
+			buttonsArray[i].userInteractionEnabled = true;
+		}
 	}
 
 	public void disableButtons()
 	{
+		for(int i = 0; i < 3; i++)
+		{
+			buttonsArray[i].userInteractionEnabled = false;
+		}
+	}
 
+	public void enableLever()
+	{
+		lever.userInteractionEnabled = true;
+	}
+
+	public void disableLever()
+	{
+		lever.userInteractionEnabled = false;
 	}
 
 	public void resetButtons()

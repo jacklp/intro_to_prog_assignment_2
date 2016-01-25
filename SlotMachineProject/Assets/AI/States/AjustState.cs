@@ -12,6 +12,7 @@ public class AdjustState : SlotMachineAIState
 
 		// enable buttons
 		slotMachineAI.enableButtons();
+		slotMachineAI.enableLever();
 	}
 
 	public override void execute (SlotMachineAI slotMachineAI)
@@ -26,6 +27,7 @@ public class AdjustState : SlotMachineAIState
 
 		// disable buttons
 		slotMachineAI.disableButtons();
+		slotMachineAI.disableLever();
 	}
 
 	// events

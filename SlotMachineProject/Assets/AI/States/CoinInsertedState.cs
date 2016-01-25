@@ -9,6 +9,7 @@ public class CoinInsertedState : SlotMachineAIState
 	{
 		Debug.Log("CoinInsertedState - enter");
 		base.enter(slotMachineAI);
+		slotMachineAI.enableLever();
 	}
 
 	public override void execute (SlotMachineAI slotMachineAI)
@@ -20,6 +21,7 @@ public class CoinInsertedState : SlotMachineAIState
 	{
 		Debug.Log("CoinInsertedState - exit");
 		base.exit(slotMachineAI);
+		slotMachineAI.disableLever();
 	}
 
 	// events
