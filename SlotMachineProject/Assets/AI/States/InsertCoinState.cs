@@ -9,11 +9,13 @@ public class InsertCoinState : SlotMachineAIState
 	{
 		Debug.Log("InsertCoinsState - enter");
 		base.enter(slotMachineAI);
+		slotMachineAI.resetSpinningCounter();
+		slotMachineAI.resetButtons();
 	}
 
 	public override void execute (SlotMachineAI slotMachineAI)
 	{
-
+		
 	}
 
 	public override void exit (SlotMachineAI slotMachineAI)
@@ -27,6 +29,7 @@ public class InsertCoinState : SlotMachineAIState
 	{
 		Debug.Log("coin inserted received");
 		StateMachine<SlotMachineAI> fsm = ((SlotMachineAI)sender).getFSM();
-		fsm.setState(new InitialPullLeverState());
+		fsm.setState(new CoinInsertedState());
+
 	}
 }

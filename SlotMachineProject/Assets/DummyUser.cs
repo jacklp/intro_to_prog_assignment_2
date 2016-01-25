@@ -14,5 +14,6 @@ public class DummyUser : MonoBehaviour {
 	{		
 		if (Input.GetKeyDown(KeyCode.C)) slotMachineAI.coinInserted();
 		if (Input.GetKeyDown(KeyCode.P)) slotMachineAI.leverPulled();
+		//if (Input.GetKeyDown(KeyCode.W)) slotMachineAI.wheelStopped();
 	}
 }

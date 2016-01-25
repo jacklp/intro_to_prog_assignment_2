@@ -4,6 +4,26 @@ using System;
 
 public class SlotMachineAI : MonoBehaviour {
 
+	// global state variables --------------------------
+	int spinningCounter = 0;
+	public void incrementSpinningCounter()
+	{
+		spinningCounter++;
+	}
+	public void resetSpinningCounter()
+	{
+		spinningCounter = 0;
+	}
+
+	Button[] buttonsArray = new Button[3];
+	//bool[] buttonsState = new bool[3];
+
+	int spinningWheels = 0;
+
+	Wheel[] wheelsArray = new Wheel[3];
+
+	//---------------------------------------------------
+
 	StateMachine<SlotMachineAI> _fsm;
 	public StateMachine<SlotMachineAI> getFSM()
 	{
@@ -13,14 +33,21 @@ public class SlotMachineAI : MonoBehaviour {
 	// each state can subscribe to these events --------------------
 	public event EventHandler coinInsertedEvent;
 	public event EventHandler leverPulledEvent;
-	public event EventHandler wheelStoppedEvent;
-	public event EventHandler buttonActivatedEvent;
-	public event EventHandler buttonDeactivatedEvent;
+	public event EventHandler allWheelsStoppedEvent;
 
 	void Start()
 	{
 		_fsm = new StateMachine<SlotMachineAI>(this);
 		_fsm.setState(new InsertCoinState());
+
+		wheelsArray[0] = GameObject.Find("Wheel0").GetComponent<Wheel>();
+		wheelsArray[1] = GameObject.Find("Wheel1").GetComponent<Wheel>();
+		wheelsArray[2] = GameObject.Find("Wheel2").GetComponent<Wheel>();
+
+		buttonsArray[0] = GameObject.Find("Button0").GetComponent<Button>();
+		buttonsArray[1] = GameObject.Find("Button1").GetComponent<Button>();
+		buttonsArray[2] = GameObject.Find("Button2").GetComponent<Button>();
+
 	}
 	
 	void Update () 
@@ -29,14 +56,58 @@ public class SlotMachineAI : MonoBehaviour {
 		_fsm.AIupdate();
 	}
 
-	// Actions to be used by the states ------------------------------
-	public void reverseDirection()
+	// Checks -----------------------------------------------------
+	public bool canAdjust()
 	{
-		Debug.Log("direction reverted");
+		if(spinningCounter < 2) 
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
 	}
-	public void moveToHomeCorner()
+	public bool wheelsEqual()
 	{
-		Debug.Log("moved to home corner");
+		return false;
+	}
+
+	// Actions to be used by the states ------------------------------
+	public void enableButtons()
+	{
+
+	}
+
+	public void disableButtons()
+	{
+
+	}
+
+	public void resetButtons()
+	{
+		// set all buttons to activated (send events to the wheels)
+		GameObject.Find("Button0").GetComponent<Button>()._enabled = true;
+		GameObject.Find("Button1").GetComponent<Button>()._enabled = true;
+		GameObject.Find("Button2").GetComponent<Button>()._enabled = true;
+	}
+
+	public void spinWheels()
+	{
+		
+		spinningWheels = 0;
+		for(int i = 0; i < 3; i++)
+		{
+			if(buttonsArray[i]._enabled) 
+			{
+				wheelsArray[i].startSpinning();
+				spinningWheels++;
+			}
+		}
+
+		// If all wheels are disabled -> fire allWheelsStoppedEvent
+		if (spinningWheels == 0) allWheelsStoppedEvent.Invoke(this, null);
+			
 	}
 		
 	// events ---------------------------------------------------------
@@ -50,14 +121,10 @@ public class SlotMachineAI : MonoBehaviour {
 	}
 	public void wheelStopped()
 	{
-		wheelStoppedEvent.Invoke(this, null);
+		Debug.Log("wheel stopped");
+		spinningWheels--;
+		if(spinningWheels <= 0)
+			allWheelsStoppedEvent.Invoke(this, null);
 	}
-	public void buttonActivated()
-	{
-		buttonActivatedEvent.Invoke(this, null);
-	}
-	public void buttonDeactivated()
-	{
-		buttonDeactivatedEvent.Invoke(this, null);
-	}
+
 }

@@ -11,9 +11,7 @@ public class SlotMachineAIState : AIState<SlotMachineAI>
 		// subscribe the events
 		slotMachineAI.coinInsertedEvent += coinInsertedReceived;
 		slotMachineAI.leverPulledEvent += leverPulledReceived;
-		slotMachineAI.wheelStoppedEvent += wheelStoppedReceived;
-		slotMachineAI.buttonActivatedEvent += buttonActivatedReceived;
-		slotMachineAI.buttonDeactivatedEvent += buttonDeactivatedReceived;
+		slotMachineAI.allWheelsStoppedEvent += allWheelsStoppedReceived;
 	}
 
 	public virtual void execute (SlotMachineAI slotMachineAI)
@@ -26,9 +24,7 @@ public class SlotMachineAIState : AIState<SlotMachineAI>
 		// Clear the events
 		slotMachineAI.coinInsertedEvent -= coinInsertedReceived;
 		slotMachineAI.leverPulledEvent -= leverPulledReceived;
-		slotMachineAI.wheelStoppedEvent -= wheelStoppedReceived;
-		slotMachineAI.buttonActivatedEvent -= buttonActivatedReceived;
-		slotMachineAI.buttonDeactivatedEvent -= buttonDeactivatedReceived;
+		slotMachineAI.allWheelsStoppedEvent -= allWheelsStoppedReceived;
 	}
 	#endregion
 
@@ -42,15 +38,7 @@ public class SlotMachineAIState : AIState<SlotMachineAI>
 	{
 //		Debug.Log("event received in father");
 	}
-	public virtual void wheelStoppedReceived(System.Object sender, EventArgs args)
-	{
-//		Debug.Log("event received in father");
-	}
-	public virtual void buttonActivatedReceived(System.Object sender, EventArgs args)
-	{
-//		Debug.Log("event received in father");
-	}
-	public virtual void buttonDeactivatedReceived(System.Object sender, EventArgs args)
+	public virtual void allWheelsStoppedReceived(System.Object sender, EventArgs args)
 	{
 //		Debug.Log("event received in father");
 	}

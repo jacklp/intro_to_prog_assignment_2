@@ -2,12 +2,12 @@
 using System.Collections;
 using System;
 
-public class InitialPullLeverState : SlotMachineAIState 
+public class CoinInsertedState : SlotMachineAIState 
 {	
 
 	public override void enter (SlotMachineAI slotMachineAI)
 	{
-		Debug.Log("InitialPullLeverState - enter");
+		Debug.Log("CoinInsertedState - enter");
 		base.enter(slotMachineAI);
 	}
 
@@ -18,7 +18,7 @@ public class InitialPullLeverState : SlotMachineAIState
 
 	public override void exit (SlotMachineAI slotMachineAI)
 	{
-		Debug.Log("InitialPullLeverState - exit");
+		Debug.Log("CoinInsertedState - exit");
 		base.exit(slotMachineAI);
 	}
 
@@ -27,6 +27,6 @@ public class InitialPullLeverState : SlotMachineAIState
 	{
 		Debug.Log("lever pulled received");
 		StateMachine<SlotMachineAI> fsm = ((SlotMachineAI)sender).getFSM();
-		//fsm.setState(new ScaredState());
+		fsm.setState(new SpinningState());
 	}
 }

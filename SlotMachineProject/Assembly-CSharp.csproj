@@ -46,9 +46,15 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\AI\SlotMachineAI.cs" />
-     <Compile Include="Assets\AI\States\InitialPullLeverState.cs" />
+     <Compile Include="Assets\AI\States\AjustState.cs" />
+     <Compile Include="Assets\AI\States\CoinInsertedState.cs" />
+     <Compile Include="Assets\AI\States\DecisorState.cs" />
      <Compile Include="Assets\AI\States\InsertCoinState.cs" />
      <Compile Include="Assets\AI\States\SlotMachineAIState.cs" />
+     <Compile Include="Assets\AI\States\SpinningState.cs" />
+     <Compile Include="Assets\AI\States\YouLoseState.cs" />
+     <Compile Include="Assets\AI\States\YouWinState.cs" />
+     <Compile Include="Assets\Button.cs" />
      <Compile Include="Assets\DummyUser.cs" />
      <Compile Include="Assets\FacebookSDK\Examples\Scripts\ConsoleBase.cs" />
      <Compile Include="Assets\FacebookSDK\Examples\Scripts\LogView.cs" />
@@ -145,6 +151,7 @@
      <Compile Include="Assets\FacebookSDK\SDK\Scripts\Utils\Utilities.cs" />
      <Compile Include="Assets\StateMachine\AIState.cs" />
      <Compile Include="Assets\StateMachine\StateMachine.cs" />
+     <Compile Include="Assets\Wheel.cs" />
      <None Include="Assets\FacebookSDK\SDK\Editor\android\DefaultAndroidManifest.xml" />
      <None Include="Assets\Plugins\Android\AndroidManifest.xml" />
      <None Include="Assets\FacebookSDK\SDK\Scripts\Canvas\Resources\JSSDKBindings.txt" />
