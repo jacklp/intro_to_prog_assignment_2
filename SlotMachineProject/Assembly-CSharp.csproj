@@ -55,6 +55,7 @@
      <Compile Include="Assets\AI\States\YouLoseState.cs" />
      <Compile Include="Assets\AI\States\YouWinState.cs" />
      <Compile Include="Assets\Button.cs" />
+     <Compile Include="Assets\CatMouth.cs" />
      <Compile Include="Assets\DummyUser.cs" />
      <Compile Include="Assets\FacebookQueries.cs" />
      <Compile Include="Assets\FacebookSDK\Examples\Scripts\ConsoleBase.cs" />
