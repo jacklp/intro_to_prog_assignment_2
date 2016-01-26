@@ -12,6 +12,7 @@ public class SlotMachineAIState : AIState<SlotMachineAI>
 		slotMachineAI.coinInsertedEvent += coinInsertedReceived;
 		slotMachineAI.leverPulledEvent += leverPulledReceived;
 		slotMachineAI.allWheelsStoppedEvent += allWheelsStoppedReceived;
+		slotMachineAI.timerFinishedEvent += timerFinishedReceived;
 	}
 
 	public virtual void execute (SlotMachineAI slotMachineAI)
@@ -25,6 +26,7 @@ public class SlotMachineAIState : AIState<SlotMachineAI>
 		slotMachineAI.coinInsertedEvent -= coinInsertedReceived;
 		slotMachineAI.leverPulledEvent -= leverPulledReceived;
 		slotMachineAI.allWheelsStoppedEvent -= allWheelsStoppedReceived;
+		slotMachineAI.timerFinishedEvent -= timerFinishedReceived;
 	}
 	#endregion
 
@@ -39,6 +41,10 @@ public class SlotMachineAIState : AIState<SlotMachineAI>
 //		Debug.Log("event received in father");
 	}
 	public virtual void allWheelsStoppedReceived(System.Object sender, EventArgs args)
+	{
+//		Debug.Log("event received in father");
+	}
+	public virtual void timerFinishedReceived(System.Object sender, EventArgs args)
 	{
 //		Debug.Log("event received in father");
 	}

@@ -9,6 +9,7 @@ public class YouLoseState : SlotMachineAIState
 	{
 		Debug.Log("YouLoseState - enter");
 		base.enter(slotMachineAI);
+		slotMachineAI.StartTimer(2f);
 	}
 
 	public override void execute (SlotMachineAI slotMachineAI)
@@ -23,5 +24,10 @@ public class YouLoseState : SlotMachineAIState
 	}
 
 	// events
+	public override void timerFinishedReceived(System.Object sender, EventArgs args)
+	{
+		StateMachine<SlotMachineAI> fsm = ((SlotMachineAI)sender).getFSM();
+		fsm.setState(new InsertCoinState());
+	}
 
 }

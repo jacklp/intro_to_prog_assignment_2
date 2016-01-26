@@ -26,6 +26,7 @@ public class SlotMachineAI : MonoBehaviour {
 	Wheel[] wheelsArray = new Wheel[3];
 
 	Lever lever;
+	CatMouth mouth;
 
 	//---------------------------------------------------
 
@@ -39,6 +40,7 @@ public class SlotMachineAI : MonoBehaviour {
 	public event EventHandler coinInsertedEvent;
 	public event EventHandler leverPulledEvent;
 	public event EventHandler allWheelsStoppedEvent;
+	public event EventHandler timerFinishedEvent;
 
 	void Start()
 	{
@@ -54,6 +56,8 @@ public class SlotMachineAI : MonoBehaviour {
 		buttonsArray[2] = GameObject.Find("Button2").GetComponent<Button>();
 
 		lever = GameObject.Find("Lever").GetComponent<Lever>();
+
+		mouth = GameObject.Find("CatMouth").GetComponent<CatMouth>();
 
 	}
 	
@@ -81,6 +85,17 @@ public class SlotMachineAI : MonoBehaviour {
 	}
 
 	// Actions to be used by the states ------------------------------
+	public void enableMouth()
+	{
+		if (mouth == null) mouth = GameObject.Find("CatMouth").GetComponent<CatMouth>();
+		mouth._enabled = true;
+	}
+	public void disableMouth()
+	{
+		mouth._enabled = false;
+	}
+
+
 	public void enableButtons()
 	{
 		for(int i = 0; i < 3; i++)
@@ -132,8 +147,28 @@ public class SlotMachineAI : MonoBehaviour {
 		if (spinningWheels == 0) allWheelsStoppedEvent.Invoke(this, null);
 			
 	}
+
+	public void StartTimer(float time)
+	{
+		StartCoroutine(timer(time));
+	}
+	IEnumerator timer(float time)
+	{		
+		float timer = 0.0f;
+		while(timer < time)
+		{
+			timer += Time.deltaTime;
+			yield return null;
+		}
+		timerFinished();
+	}
+
 		
 	// events ---------------------------------------------------------
+	private void timerFinished()
+	{
+		timerFinishedEvent.Invoke(this, null);
+	}
 	public void coinInserted()
 	{
 		coinInsertedEvent.Invoke(this, null);
