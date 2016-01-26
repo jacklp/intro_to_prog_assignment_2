@@ -5,6 +5,9 @@ using System;
 public class SlotMachineAI : MonoBehaviour {
 
 	// global state variables --------------------------
+
+	int maxSpinningsAllowedPerGame = 5;
+
 	int spinningCounter = 0;
 	public void incrementSpinningCounter()
 	{
@@ -63,7 +66,7 @@ public class SlotMachineAI : MonoBehaviour {
 	// Checks -----------------------------------------------------
 	public bool canAdjust()
 	{
-		if(spinningCounter < 2) 
+		if(spinningCounter < maxSpinningsAllowedPerGame) 
 		{
 			return true;
 		}
