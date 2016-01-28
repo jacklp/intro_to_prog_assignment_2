@@ -6,6 +6,7 @@ public class Wheel : MonoBehaviour {
 	float angulaVelocity = 360f; // degrees per second
 	int numberOfSectors = 6;
 
+
 	static int idGenerator = 0;
 	static int generateId()
 	{
@@ -21,6 +22,11 @@ public class Wheel : MonoBehaviour {
 	{
 		id = generateId();
 		slotMachineAI = GameObject.Find("SlotMachine").GetComponent<SlotMachineAI>();
+	}
+
+
+	void GetPicture(Texture result){
+		
 	}
 
 	public void startSpinning()

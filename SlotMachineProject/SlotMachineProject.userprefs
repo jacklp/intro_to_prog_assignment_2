@@ -1,16 +1,10 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\AI\States\SlotMachineAIState.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/FacebookInterface/FacebookInterface.cs">
     <Files>
-      <File FileName="Assets\AI\SlotMachineAI.cs" Line="170" Column="1" />
-      <File FileName="Assets\Dragable.cs" Line="103" Column="37" />
-      <File FileName="Assets\CatMouth.cs" Line="24" Column="5" />
-      <File FileName="Assets\CookieDisposer.cs" Line="9" Column="3" />
-      <File FileName="Assets\AI\States\InsertCoinState.cs" Line="30" Column="81" />
-      <File FileName="Assets\AI\States\YouWinState.cs" Line="12" Column="29" />
-      <File FileName="Assets\Wheel.cs" Line="54" Column="4" />
-      <File FileName="Assets\AI\States\SlotMachineAIState.cs" Line="15" Column="60" />
-      <File FileName="Assets\AI\States\YouLoseState.cs" Line="12" Column="29" />
+      <File FileName="Assets/FacebookInterface/FacebookInterface.cs" Line="18" Column="20" />
+      <File FileName="Assets/FacebookSDK/SDK/Scripts/FB.cs" Line="104" Column="18" />
+      <File FileName="Assets/FacebookSDK/SDK/Scripts/PlatformEditor/EditorFacebookMockDialog.cs" Line="38" Column="38" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
