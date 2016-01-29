@@ -25,6 +25,7 @@ public class Button : MonoBehaviour {
 			else
 			{
 				_enabled = true;
+
 			}
 		}
 
