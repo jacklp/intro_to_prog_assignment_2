@@ -75,13 +75,12 @@ public class FacebookInterface: MonoBehaviour {
 
 	public void FbGetPictures()
 	{
-		FB.API ("/me?fields=friends.limit(3).fields(first_name,id)", HttpMethod.GET, handleFriendIds);
+		FB.API ("/me?fields=friends.limit(6).fields(first_name,id)", HttpMethod.GET, handleFriendIds);
 
 	}
 
 	public void handleFriendIds(IGraphResult result)
 	{
-
 
 		var dict = Json.Deserialize(result.RawResult) as Dictionary<string,object>;
 
@@ -91,13 +90,15 @@ public class FacebookInterface: MonoBehaviour {
 		if(dict.TryGetValue ("friends", out friendsH)) {
 			friends = (List<object>)(((Dictionary<string, object>)friendsH) ["data"]);
 
-			for (int i = 0; i < 3; i++) {
+			for (int i = 0; i < 6; i++) {
 				var friendDict = ((Dictionary<string,object>)(friends[i]));
 				var friend = new Dictionary<string, string>();
 				friend["id"] = (string)friendDict["id"];
 				friend["first_name"] = (string)friendDict["first_name"];
+
 				Debug.Log (friend ["id"] + friend ["first_name"]);
-				FB.API( friend["id"] + "?fields=picture", HttpMethod.GET, GetPictureCallBack);
+
+				FB.API( friend["id"] + "/picture?type=square&height=128&width=128", HttpMethod.GET, GetPictureCallBack);
 			}
 		}
 	}
@@ -108,7 +109,7 @@ public class FacebookInterface: MonoBehaviour {
 	public void GetPictureCallBack(IGraphResult result)
 	{
 		//set the texture to the wheel
-		GameObject.Find("Manager").GetComponent<Manager>().SetWheelsTexture(result.Texture);
+		GameObject.Find("Manager").GetComponent<Manager>().AddWheelsTexture(result.Texture);
 	}
-		
+
 }

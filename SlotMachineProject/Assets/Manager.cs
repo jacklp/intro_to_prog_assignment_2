@@ -1,12 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using System;
 
 public class Manager : MonoBehaviour {
 
 	FacebookInterface facebookInterface;
+	List<Texture2D> images;
 
-    
+
 
 	// Use this for initialization
 	void Start () 
@@ -14,8 +16,10 @@ public class Manager : MonoBehaviour {
 		facebookInterface = GameObject.Find ("FacebookInterface").GetComponent<FacebookInterface> ();
 		facebookInterface.initializationFinishedEvent += facebookInitialized;
 		facebookInterface.FBInit ();
+
+		images = new List<Texture2D>();
 	}
-	
+
 	public void facebookInitialized(System.Object sender, EventArgs args)
 	{
 		//instead of just getting a picture.
@@ -26,12 +30,22 @@ public class Manager : MonoBehaviour {
 
 		facebookInterface.FbGetPictures ();
 	}
-    
-	public void SetWheelsTexture(Texture2D texture)
+
+	public void AddWheelsTexture(Texture2D texture)
 	{
-		Debug.Log ("Manager: Texture retrieved");
-		GameObject.Find ("Image1").GetComponent<Renderer> ().material.mainTexture = texture;
+		images.Add (texture);
+		if (images.Count == 6) {
+			SetWheelsTexture ();
+		}
 	}
 
+	public void SetWheelsTexture(){
+		for (int i = 0; i < images.Count; i++) {
 
+			Material myMaterial = Resources.Load("Materials/Material" + i.ToString(), typeof(Material)) as Material;
+			myMaterial.mainTexture = images [i];
+			//GameObject.Find ("Material" + i.ToString()).GetComponent<Renderer> ().material.mainTexture = images[i];
+		}
+		Debug.Log ("materials assigned textures");
+	}
 }
