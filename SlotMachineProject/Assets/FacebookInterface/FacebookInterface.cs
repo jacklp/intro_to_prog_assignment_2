@@ -97,7 +97,7 @@ public class FacebookInterface: MonoBehaviour {
 				friend["id"] = (string)friendDict["id"];
 				friend["first_name"] = (string)friendDict["first_name"];
 				Debug.Log (friend ["id"] + friend ["first_name"]);
-				FB.API( friend["id"] + "?fields=photos", HttpMethod.GET, GetPictureCallBack);
+				FB.API( friend["id"] + "?fields=picture", HttpMethod.GET, GetPictureCallBack);
 			}
 		}
 	}

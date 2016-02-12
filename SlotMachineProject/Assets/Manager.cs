@@ -6,6 +6,8 @@ public class Manager : MonoBehaviour {
 
 	FacebookInterface facebookInterface;
 
+    
+
 	// Use this for initialization
 	void Start () 
 	{
@@ -24,7 +26,7 @@ public class Manager : MonoBehaviour {
 
 		facebookInterface.FbGetPictures ();
 	}
-
+    
 	public void SetWheelsTexture(Texture2D texture)
 	{
 		Debug.Log ("Manager: Texture retrieved");
