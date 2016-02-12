@@ -4,69 +4,30 @@ using System.Collections.Generic;
 using Facebook.Unity;
 using UnityEngine.UI;
 using System;
+using Facebook.MiniJSON;
 
 public class FacebookInterface: MonoBehaviour {
 
-	/*
-	 * 
-	 * LOGIN WILL PROMPT FOR USER ACCESS TOKEN:
-	 * CAADD8fplJywBAFcggN60exTvVFoAKA44IxzZB01FFcaDNim7aZAZCrVPys6kLyZC6Awg0RZBPDDXTtt2ZCnzulhnL4DjZBbw7TOZALRTS66qxHs5QBVjdd6BF30KW4d5ZCqQHN9uU2GU1fF4doEx7DbPczQIDYM8A8ZB6A3Yn1crmPqiF9I03SEIRYBXYS5VKbsi2fZCR6aHEZBBIgZDZD
-	 * 
-	 * APP NAME:
-	 * kitty_cookie_slot
-	 * 
-	 * APP ID:
-	 * 215444055467820
-	 * 
-	 */
-
-
-	/**********************************************/
-	//			UTILITY METHODS					   //
-	/**********************************************/
-
-
-	public void FbGetFriends()
-	{
-		// FB.API("/me?fields=friends.limit(10).fields(first_name,id)")
-	}
-
-	public void FbGetPicture()
-	{
-		FB.API("me/picture?type=square&height=128&width=128", HttpMethod.GET, GetPictureCallBack);
-
-	}
-
-	public void GetPictureCallBack(IGraphResult result)
-	{
-		//set the texture to the wheel
-		GameObject.Find("Manager").GetComponent<Manager>().SetWheelsTexture(result.Texture);
-	}
-
-
-
-	/**********************************************/
-	//			LOGIN AND AUTH					   //
-	/**********************************************/
-
 	public event EventHandler initializationFinishedEvent;
 
-	void Start(){
-		//FBInit ();
-	}
-
+	/*
+	 * Initialise facebook through api.
+	 */
 	public void FBInit(){
 		Debug.Log ("FB INITIALISED");
 		FB.Init (InitCallback, OnHideUnity);
 	}
 
+	/*
+	 * callback function from facebook initialise
+	 */
 	private void InitCallback ()
 	{
 		if (FB.IsInitialized) {
 			// Signal an app activation App Event
 			FB.ActivateApp();
 
-			var perms = new List<string>(){"public_profile", "email", "user_friends"};
+			var perms = new List<string>(){"public_profile", "email", "user_friends", "user_photos"};
 			FB.LogInWithReadPermissions(perms, AuthCallback);
 
 		} else {
@@ -74,8 +35,9 @@ public class FacebookInterface: MonoBehaviour {
 		}
 	}
 
-
-
+	/*
+	 * callback from facebook authorisation
+	 */
 	private void AuthCallback (ILoginResult result) {
 		if (FB.IsLoggedIn) {
 			// AccessToken class will have session details
@@ -92,7 +54,10 @@ public class FacebookInterface: MonoBehaviour {
 			Debug.Log("User cancelled login");
 		}
 	}
-		
+
+	/*
+	 * pause game whilst you login
+	 */
 	private void OnHideUnity (bool isGameShown)
 	{
 		if (!isGameShown) {
@@ -104,6 +69,46 @@ public class FacebookInterface: MonoBehaviour {
 		}
 	}
 
+	/*
+	 * Gets facebook pictures
+	 */
+
+	public void FbGetPictures()
+	{
+		FB.API ("/me?fields=friends.limit(3).fields(first_name,id)", HttpMethod.GET, handleFriendIds);
+
+	}
+
+	public void handleFriendIds(IGraphResult result)
+	{
 
 
+		var dict = Json.Deserialize(result.RawResult) as Dictionary<string,object>;
+
+
+		object friendsH;
+		var friends = new List<object>();
+		if(dict.TryGetValue ("friends", out friendsH)) {
+			friends = (List<object>)(((Dictionary<string, object>)friendsH) ["data"]);
+
+			for (int i = 0; i < 3; i++) {
+				var friendDict = ((Dictionary<string,object>)(friends[i]));
+				var friend = new Dictionary<string, string>();
+				friend["id"] = (string)friendDict["id"];
+				friend["first_name"] = (string)friendDict["first_name"];
+				Debug.Log (friend ["id"] + friend ["first_name"]);
+				FB.API( friend["id"] + "?fields=photos", HttpMethod.GET, GetPictureCallBack);
+			}
+		}
+	}
+
+	/*
+	 * getpicturecallback
+	 */
+	public void GetPictureCallBack(IGraphResult result)
+	{
+		//set the texture to the wheel
+		GameObject.Find("Manager").GetComponent<Manager>().SetWheelsTexture(result.Texture);
+	}
+		
 }

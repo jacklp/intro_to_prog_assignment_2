@@ -16,8 +16,13 @@ public class Manager : MonoBehaviour {
 	
 	public void facebookInitialized(System.Object sender, EventArgs args)
 	{
+		//instead of just getting a picture.
+
+		// 1. get friends' id's.
+		// 2. get 3 of their pictures.
 		Debug.Log ("Manager: Facebook Initialized");
-		facebookInterface.FbGetPicture ();
+
+		facebookInterface.FbGetPictures ();
 	}
 
 	public void SetWheelsTexture(Texture2D texture)
