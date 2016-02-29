@@ -10,7 +10,8 @@ public class CoinInsertedState : SlotMachineAIState
 		Debug.Log("CoinInsertedState - enter");
 		base.enter(slotMachineAI);
 		slotMachineAI.enableLever();
-	}
+        slotMachineAI.raiseSign("PullLever");
+    }
 
 	public override void execute (SlotMachineAI slotMachineAI)
 	{
@@ -22,7 +23,8 @@ public class CoinInsertedState : SlotMachineAIState
 		Debug.Log("CoinInsertedState - exit");
 		base.exit(slotMachineAI);
 		slotMachineAI.disableLever();
-	}
+        slotMachineAI.lowSign("PullLever");
+    }
 
 	// events
 	public override void leverPulledReceived(System.Object sender, EventArgs args)

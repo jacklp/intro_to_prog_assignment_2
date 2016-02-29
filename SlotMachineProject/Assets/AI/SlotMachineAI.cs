@@ -85,7 +85,18 @@ public class SlotMachineAI : MonoBehaviour {
 	}
 
 	// Actions to be used by the states ------------------------------
-	public void enableMouth()
+
+    public void raiseSign(string name)
+    {
+        GameObject.Find(name).GetComponent<Animator>().SetBool("activate", true);
+    }
+    public void lowSign(string name)
+    {
+        GameObject.Find(name).GetComponent<Animator>().SetBool("activate", false);
+    }
+
+
+    public void enableMouth()
 	{
 		if (mouth == null) mouth = GameObject.Find("CatMouth").GetComponent<CatMouth>();
 		mouth._enabled = true;

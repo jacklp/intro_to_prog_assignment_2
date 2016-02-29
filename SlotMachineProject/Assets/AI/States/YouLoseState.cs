@@ -10,7 +10,9 @@ public class YouLoseState : SlotMachineAIState
 		Debug.Log("YouLoseState - enter");
 		base.enter(slotMachineAI);
 		slotMachineAI.StartTimer(2f);
-	}
+
+        slotMachineAI.raiseSign("YouLose");
+    }
 
 	public override void execute (SlotMachineAI slotMachineAI)
 	{
@@ -21,7 +23,8 @@ public class YouLoseState : SlotMachineAIState
 	{
 		Debug.Log("YouLoseState - exit");
 		base.exit(slotMachineAI);
-	}
+        slotMachineAI.lowSign("YouLose");
+    }
 
 	// events
 	public override void timerFinishedReceived(System.Object sender, EventArgs args)

@@ -4,7 +4,6 @@
 [Tt]emp/
 [Oo]bj/
 [Bb]uild
-[Ll]ibrary/
 sysinfo.txt
 *.stackdump
  
@@ -32,3 +31,4 @@ sysinfo.txt
 Icon?
 ehthumbs.db
 [Tt]humbs.db
+SlotMachineProject/Library/

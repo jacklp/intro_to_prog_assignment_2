@@ -12,7 +12,9 @@ public class InsertCoinState : SlotMachineAIState
 		slotMachineAI.resetSpinningCounter();
 		slotMachineAI.resetButtons();
 		slotMachineAI.enableMouth();
-	}
+        slotMachineAI.raiseSign("InsertCoinSign");
+
+    }
 
 	public override void execute (SlotMachineAI slotMachineAI)
 	{
@@ -24,7 +26,8 @@ public class InsertCoinState : SlotMachineAIState
 		Debug.Log("InsertCoinsState - exit");
 		base.exit(slotMachineAI);
 		slotMachineAI.disableMouth();
-	}
+        slotMachineAI.lowSign("InsertCoinSign");
+    }
 
 	// events
 	public override void coinInsertedReceived(System.Object sender, EventArgs args)

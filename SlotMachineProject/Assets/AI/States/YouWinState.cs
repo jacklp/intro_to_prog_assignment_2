@@ -10,9 +10,11 @@ public class YouWinState : SlotMachineAIState
 		Debug.Log("YouWinState - enter");
 		base.enter(slotMachineAI);
 		slotMachineAI.StartTimer(2f);
-	}
 
-	public override void execute (SlotMachineAI slotMachineAI)
+        slotMachineAI.raiseSign("YouWin");
+    }
+
+    public override void execute (SlotMachineAI slotMachineAI)
 	{
 
 	}
@@ -21,10 +23,12 @@ public class YouWinState : SlotMachineAIState
 	{
 		Debug.Log("YouWinState - exit");
 		base.exit(slotMachineAI);
-	}
 
-	// events
-	public override void timerFinishedReceived(System.Object sender, EventArgs args)
+        slotMachineAI.lowSign("YouWin");
+    }
+
+    // events
+    public override void timerFinishedReceived(System.Object sender, EventArgs args)
 	{
 		StateMachine<SlotMachineAI> fsm = ((SlotMachineAI)sender).getFSM();
 		fsm.setState(new InsertCoinState());
