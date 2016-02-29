@@ -28,6 +28,7 @@ public class SlotMachineAI : MonoBehaviour {
 	Lever lever;
 	CatMouth mouth;
     Dispenser cookieDispenser;
+    ParticleSystem particles;
 
 	//---------------------------------------------------
 
@@ -61,6 +62,8 @@ public class SlotMachineAI : MonoBehaviour {
 		mouth = GameObject.Find("CatMouth").GetComponent<CatMouth>();
 
         cookieDispenser = GameObject.Find("CookieDispenser").GetComponent<Dispenser>();
+
+        particles = GameObject.Find("Particles").GetComponent<ParticleSystem>();
 
 
     }
@@ -96,6 +99,11 @@ public class SlotMachineAI : MonoBehaviour {
 	}
 
 	// Actions to be used by the states ------------------------------
+
+    public void FireParticles()
+    {
+        particles.Play();
+    }
 
     public void DispenseCookies(int n)
     {

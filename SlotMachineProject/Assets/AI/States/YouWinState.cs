@@ -13,6 +13,7 @@ public class YouWinState : SlotMachineAIState
 
         slotMachineAI.raiseSign("YouWinSign");
         slotMachineAI.DispenseCookies(6);
+        slotMachineAI.FireParticles();
     }
 
     public override void execute (SlotMachineAI slotMachineAI)
