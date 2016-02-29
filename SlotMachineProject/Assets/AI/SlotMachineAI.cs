@@ -27,6 +27,7 @@ public class SlotMachineAI : MonoBehaviour {
 
 	Lever lever;
 	CatMouth mouth;
+    Dispenser cookieDispenser;
 
 	//---------------------------------------------------
 
@@ -59,7 +60,10 @@ public class SlotMachineAI : MonoBehaviour {
 
 		mouth = GameObject.Find("CatMouth").GetComponent<CatMouth>();
 
-	}
+        cookieDispenser = GameObject.Find("CookieDispenser").GetComponent<Dispenser>();
+
+
+    }
 	
 	void Update () 
 	{
@@ -81,10 +85,22 @@ public class SlotMachineAI : MonoBehaviour {
 	}
 	public bool wheelsEqual()
 	{
-		return false;
+        if (wheelsArray[0].targetAngle == wheelsArray[1].targetAngle && wheelsArray[1].targetAngle == wheelsArray[2].targetAngle)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
 	}
 
 	// Actions to be used by the states ------------------------------
+
+    public void DispenseCookies(int n)
+    {
+        cookieDispenser.Dispense(n);
+    }
 
     public void raiseSign(string name)
     {

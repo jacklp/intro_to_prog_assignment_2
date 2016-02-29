@@ -81,6 +81,7 @@
     <Compile Include="Assets\Button.cs" />
     <Compile Include="Assets\CatMouth.cs" />
     <Compile Include="Assets\CookieDisposer.cs" />
+    <Compile Include="Assets\Dispenser.cs" />
     <Compile Include="Assets\Dragable.cs" />
     <Compile Include="Assets\DummyUser.cs" />
     <Compile Include="Assets\FacebookInterface\FacebookInterface.cs" />

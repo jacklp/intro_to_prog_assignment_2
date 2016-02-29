@@ -5,7 +5,7 @@ AnimatorController:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: YouWinSign
+  m_Name: PullLeverSign
   serializedVersion: 5
   m_AnimatorParameters:
   - m_Name: activate
@@ -13,7 +13,7 @@ AnimatorController:
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -94,7 +94,7 @@ AnimatorState:
   m_SpeedParameterActive: 0
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 924fcf32006b9d34ca77d73c7ae5294b, type: 2}
+  m_Motion: {fileID: 7400000, guid: dc988e8a19a1b964c9d160cb24c5fcd3, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -118,7 +118,7 @@ AnimatorState:
   m_SpeedParameterActive: 0
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: fb6e790782d65b04b8594cabbd43a25b, type: 2}
+  m_Motion: {fileID: 7400000, guid: 553c1b930cc47c14e8b0bbd36a1996a6, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 

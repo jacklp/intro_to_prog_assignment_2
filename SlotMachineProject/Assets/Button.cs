@@ -11,9 +11,22 @@ public class Button : MonoBehaviour {
 	void Start () 
 	{
 		_enabled = true;
-	}
-	
-	void OnMouseDown()
+    }
+
+    void Update()
+    {
+        if (_enabled && userInteractionEnabled)
+        {
+            transform.GetComponent<Renderer>().material.SetColor("_Color", new Color(255, 248, 0));
+
+        }
+        else
+        {
+            transform.GetComponent<Renderer>().material.SetColor("_Color", new Color(2, 57, 124, 255));
+        }
+    }
+
+    void OnMouseDown()
 	{
 		if(userInteractionEnabled)
 		{
@@ -21,12 +34,11 @@ public class Button : MonoBehaviour {
 			if(_enabled) 
 			{
 				_enabled = false;
-			}
+            }
 			else
 			{
 				_enabled = true;
-
-			}
+            }
 		}
 
 	}

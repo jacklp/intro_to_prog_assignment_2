@@ -6,8 +6,9 @@ public class Wheel : MonoBehaviour {
 	float angulaVelocity = 360f; // degrees per second
 	int numberOfSectors = 6;
 
+    public float targetAngle;
 
-	static int idGenerator = 0;
+    static int idGenerator = 0;
 	static int generateId()
 	{
 		idGenerator++;
@@ -37,8 +38,11 @@ public class Wheel : MonoBehaviour {
 		// random number of sectors of the wheel to spin.
 		int rndSectorsToSpin = 6 + (int)(Random.value * 10);
 
-		// angular space to cover
-		float theta = rndSectorsToSpin * 360f/numberOfSectors;
+        // use this line to cheat when debugging the winning state
+        //rndSectorsToSpin = 6;
+
+        // angular space to cover
+        float theta = rndSectorsToSpin * 360f/numberOfSectors;
 
 		//how much time does it spin
 		float time = theta / angulaVelocity;
@@ -60,7 +64,7 @@ public class Wheel : MonoBehaviour {
 		}
 
 		// wheel reached its final position, snap to angle
-		float targetAngle = 0f;
+		targetAngle = 0f;
 
 		float rotationZ = transform.rotation.eulerAngles.z % 360f;
 		if(rotationZ <= 30f || rotationZ > 330f)

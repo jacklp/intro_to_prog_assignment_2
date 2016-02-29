@@ -11,7 +11,8 @@ public class YouWinState : SlotMachineAIState
 		base.enter(slotMachineAI);
 		slotMachineAI.StartTimer(2f);
 
-        slotMachineAI.raiseSign("YouWin");
+        slotMachineAI.raiseSign("YouWinSign");
+        slotMachineAI.DispenseCookies(6);
     }
 
     public override void execute (SlotMachineAI slotMachineAI)
@@ -24,7 +25,7 @@ public class YouWinState : SlotMachineAIState
 		Debug.Log("YouWinState - exit");
 		base.exit(slotMachineAI);
 
-        slotMachineAI.lowSign("YouWin");
+        slotMachineAI.lowSign("YouWinSign");
     }
 
     // events
