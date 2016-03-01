@@ -7,8 +7,9 @@ public class Manager : MonoBehaviour {
 
 	FacebookInterface facebookInterface;
 	List<Texture2D> images;
-
-
+	GameObject wheel;
+	GameObject plane;
+	Renderer renderer;
 
 	// Use this for initialization
 	void Start () 
@@ -22,10 +23,6 @@ public class Manager : MonoBehaviour {
 
 	public void facebookInitialized(System.Object sender, EventArgs args)
 	{
-		//instead of just getting a picture.
-
-		// 1. get friends' id's.
-		// 2. get 3 of their pictures.
 		Debug.Log ("Manager: Facebook Initialized");
 
 		facebookInterface.FbGetPictures ();
@@ -42,10 +39,17 @@ public class Manager : MonoBehaviour {
 	public void SetWheelsTexture(){
 		for (int i = 0; i < images.Count; i++) {
 
-			Material myMaterial = Resources.Load("Materials/Material" + i.ToString(), typeof(Material)) as Material;
+			string materialName = "Material" + i.ToString();
+			Material myMaterial = Resources.Load(materialName, typeof(Material)) as Material;
 			myMaterial.mainTexture = images [i];
-			//GameObject.Find ("Material" + i.ToString()).GetComponent<Renderer> ().material.mainTexture = images[i];
+
+			//loop through the 3 different wheels and assign this material:
+			for (int v = 0; v < 3; v++) {
+				wheel = GameObject.Find ("Wheel" + v.ToString ());
+				plane = wheel.transform.GetChild (i).gameObject;
+				renderer = plane.GetComponent<Renderer> ();
+				renderer.material = myMaterial;
+			}
 		}
-		Debug.Log ("materials assigned textures");
 	}
 }
