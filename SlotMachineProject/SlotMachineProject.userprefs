@@ -1,8 +1,9 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
-  <MonoDevelop.Ide.Workspace />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\FacebookInterface\FacebookInterface.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Dragable.cs">
     <Files>
-      <File FileName="Assets\FacebookInterface\FacebookInterface.cs" Line="13" Column="220" />
+      <File FileName="Assets\Dragable.cs" Line="41" Column="13" />
+      <File FileName="Assets\FacebookInterface\FacebookInterface.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
